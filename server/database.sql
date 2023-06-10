@@ -111,6 +111,6 @@ for(let i = 0; i < array.length; i++) {
 
 }
 
-
+this is new
 
 Then, you use this string to run a SQL query that finds all records with taht value.  
