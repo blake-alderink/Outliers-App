@@ -1,23 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import { userActions } from "./store/userSlice";
+import { useSelector,useDispatch } from "react-redux";
+
 
 function App() {
+
+const dispatch = useDispatch();
+const user = useSelector(state => state.user);
+
+const changeUser = () => {
+  if (user.id === null) {
+    dispatch(userActions.setUser({id: '1', username: 'blake'}))
+  }
+  else {
+    dispatch(userActions.setUser({id: null, username: null}))
+  }
+}
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h1>{user.id}</h1>
+      <h1>{user.username}</h1>
+     hello
+     <button onClick={() => changeUser()}>toggle user</button>
     </div>
   );
 }
