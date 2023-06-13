@@ -1,22 +1,36 @@
 import axios from "axios";
 import { dummyData } from "./dummy_data";
+import { useSelector, useDispatch } from "react-redux";
+import { betActions } from "./store/betSlice";
 
 
 
 
 export const LoadBettingData = () => {
 
+    const dispatch = useDispatch();
+
+    const bets = useSelector(state => state.bets)
+
 
 const loadData = () => {
-    return formatData();
+return formatData();
+
+// await bets.map(bet => {
+//     return axios.post(`http://localhost:8000/bets`, bet).then(res=> console.log(res.data)).catch(err => console.error(err.message))
+// })
+
 }
  
 
-return <button onClick={() => loadData()}>
+return <div>
+    <button onClick={() => loadData()}>
     Load Data 
 </button>
+{bets.map(bet => <h2>{bet.bet_type}</h2>)}
+    
+    </div>
 
-}
 
 
 //for each of the game objects, there are bookmakeres.  inside each bookmakers are the different game types.
@@ -34,7 +48,7 @@ return <button onClick={() => loadData()}>
 // );
 
 
-function formatData() {
+async function formatData() {
     let gameArr = dummyData;
 for( let i = 0; i < gameArr.length; i++) {
 
@@ -45,7 +59,7 @@ for (let j = 0; j < bookmakersArr.length; j++) {
     const markets = bookmakersArr[j].markets;
 
     for (let k = 0; k < markets.length; k++) {
-
+        console.log("another market")
         let marketObj = markets[k];
 
         for (let l = 0; l < marketObj.outcomes.length; l++) {
@@ -61,13 +75,13 @@ for (let j = 0; j < bookmakersArr.length; j++) {
                     team: `${dummyData[0].home_team}`,
                     opponent: `${dummyData[0].away_team}`,
                     bookmaker: `${bookmakersArr[j].key}`,
-                    uniquestring: `${marketObj.outcomes[l].name}`.concat(`${gameArr[i].home_team}`),
-                    points_amount: marketObj.outcomes[l].point
+                    uniquestring: `${marketObj.outcomes[l].name}`.concat(`${gameArr[i].home_team}`.split(" ").join('')),
+                    points_amount: Number(marketObj.outcomes[l].point)
 
                 }
             } else {
 
-                const pointsVal = marketObj.outcomes[l].point ? marketObj.outcomes[l].point : 10000
+                const pointsVal = marketObj.outcomes[l].point ? (marketObj.outcomes[l].point) : 10000
 
                 betStuff = {
                     bet_type: `${marketObj.key}`,
@@ -75,15 +89,19 @@ for (let j = 0; j < bookmakersArr.length; j++) {
                     team: `${marketObj.outcomes[l].name}`,
                     opponent: `${opponent}`,
                     bookmaker: `${bookmakersArr[j].key}`,
-                    uniquestring: `${marketObj.key}`.concat(`${marketObj.outcomes[l].name}`),
-                    points_amount: pointsVal
+                    uniquestring: `${marketObj.key}`.concat(`${marketObj.outcomes[l].name}`.split(' ').join('')),
+                    points_amount: Number(pointsVal)
                 }
 
             }
 
+            //    dispatch(betActions.addBet(betStuff))
+               try {
+                await axios.post(`http://localhost:8000/bets`, betStuff).then(res=> console.log(res.data)).catch(err => console.error(err.message))
+               } catch (error) {
+                console.log(error.message);
+               } 
                
-
-                console.log(betStuff)
 
         }
 
@@ -93,6 +111,8 @@ for (let j = 0; j < bookmakersArr.length; j++) {
 }
 
 
+
+}
 
 }
 

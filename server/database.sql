@@ -21,7 +21,7 @@ CREATE TABLE bets(
     bet_date VARCHAR(255),
     bookmaker VARCHAR(255),
     uniquestring VARCHAR(255),
-    point_amount SMALLINT
+    points_amount SMALLINT
     );
 
 -- CREATE TABLE test(
