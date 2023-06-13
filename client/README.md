@@ -68,3 +68,12 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+
+
+
+API setup:
+
+home router: GET: if no user, gets favorites from user with id "1" which is guest user.  
+
+on login, if successful authentication, then userSlice is set.  if guest button is hit, then userSlice is set to guest user

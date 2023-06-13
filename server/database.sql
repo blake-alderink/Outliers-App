@@ -19,8 +19,10 @@ CREATE TABLE bets(
     team VARCHAR(255),
     opponent VARCHAR(255),
     bet_date VARCHAR(255),
-    bookmaker VARCHAR(255)
-);
+    bookmaker VARCHAR(255),
+    uniquestring VARCHAR(255),
+    point_amount SMALLINT
+    );
 
 -- CREATE TABLE test(
 --     test_id SERIAL PRIMARY KEY,
