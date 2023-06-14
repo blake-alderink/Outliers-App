@@ -3,6 +3,7 @@ const guestRouter = require('./guestRouter');
 const userRouter = require('./userRouter')
 const homeRouter = require('./homeRouter')
 const betsRouter = require('./betsRouter')
+const outliersRouter = require('./outliersRouter')
 const pool = require('./db');
 const cors = require('cors')
 
@@ -14,6 +15,7 @@ app.use('/guest', guestRouter);
 app.use('/users', userRouter);
 app.use('/home', homeRouter);
 app.use('/bets', betsRouter);
+app.use('/outliers', outliersRouter)
 
 app.get('/', async (req, res) => {
     try {

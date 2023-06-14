@@ -9,6 +9,7 @@ import store from './store';
 import FavoriteList from './FavoriteList';
 import LoginComponent from './LoginComponent';
 import { LoadBettingData } from './LoadBettingData';
+import LoadOutlierData from './LoadOutlierData';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -17,6 +18,7 @@ root.render(
     <LoginComponent />
     <Home />
     <LoadBettingData />
+    <LoadOutlierData />
     <App />
     <FavoriteList />
   </React.StrictMode>
