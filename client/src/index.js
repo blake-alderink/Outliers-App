@@ -1,27 +1,29 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import Home from './Home';
-import reportWebVitals from './reportWebVitals';
-import { Provider } from 'react-redux';
-import store from './store';
-import FavoriteList from './FavoriteList';
-import LoginComponent from './LoginComponent';
-import { LoadBettingData } from './LoadBettingData';
-import LoadOutlierData from './LoadOutlierData';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./index.css";
+import App from "./App";
+import Home from "./Home";
+import reportWebVitals from "./reportWebVitals";
+import { Provider } from "react-redux";
+import store from "./store";
+import FavoriteList from "./FavoriteList";
+import LoginComponent from "./LoginComponent";
+import { LoadBettingData } from "./LoadBettingData";
+import LoadOutlierData from "./LoadOutlierData";
+import OutliersList from "./Components/OutliersList";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <Provider store={store}>
-  <React.StrictMode>
-    <LoginComponent />
-    <Home />
-    <LoadBettingData />
-    <LoadOutlierData />
-    <App />
-    <FavoriteList />
-  </React.StrictMode>
+    <React.StrictMode>
+      <LoginComponent />
+      <Home />
+      <LoadBettingData />
+      <LoadOutlierData />
+      <OutliersList />
+      <App />
+      <FavoriteList />
+    </React.StrictMode>
   </Provider>
 );
 
