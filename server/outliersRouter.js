@@ -8,8 +8,10 @@ const router = express.Router();
 router.use(express.json());
 router.use(cors());
 
-router.get('/', (req, res) => {
-    res.json('this outliers router is working')
+router.get('/', async (req, res) => {
+    const outliers = await pool.query('SELECT * FROM outliers')
+
+    res.json(outliers.rows);
 })
 
 router.post('/', async (req, res) => {
