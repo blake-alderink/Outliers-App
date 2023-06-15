@@ -1,7 +1,7 @@
 import axios from "axios";
-import { dummyData } from "./dummy_data";
+import { dummyData } from "../dummy_data";
 import { useSelector, useDispatch } from "react-redux";
-import { betActions } from "./store/betSlice";
+import { betActions } from "../store/betSlice";
 
 export const LoadBettingData = () => {
   const dispatch = useDispatch();

@@ -6,10 +6,10 @@ import Home from "./Home";
 import reportWebVitals from "./reportWebVitals";
 import { Provider } from "react-redux";
 import store from "./store";
-import FavoriteList from "./FavoriteList";
-import LoginComponent from "./LoginComponent";
-import { LoadBettingData } from "./LoadBettingData";
-import LoadOutlierData from "./LoadOutlierData";
+import FavoriteList from "./Components/FavoriteList";
+import LoginComponent from "./Components/LoginComponent";
+import { LoadBettingData } from "./Components/LoadBettingData";
+import LoadOutlierData from "./Components/LoadOutlierData";
 import OutliersList from "./Components/OutliersList";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));

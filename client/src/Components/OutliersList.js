@@ -2,6 +2,7 @@ import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
 import { outliersActions } from "../store/outliersSlice";
 import { useEffect } from "react";
+import OutliersCard from "./OutliersCard";
 
 const OutliersList = () => {
   const dispatch = useDispatch();
@@ -23,8 +24,8 @@ const OutliersList = () => {
   return (
     <div>
       {outliers.map((outlier) => {
-        // console.log(outlier);
-        return <h3>{outlier.bookmaker}</h3>;
+        console.log(outlier);
+        return <OutliersCard outlier={outlier} />;
       })}
       <h1>This is the outliers list component</h1>
     </div>

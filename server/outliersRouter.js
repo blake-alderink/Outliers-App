@@ -8,7 +8,9 @@ router.use(express.json());
 router.use(cors());
 
 router.get("/", async (req, res) => {
-  const outliers = await pool.query("SELECT * FROM outliers");
+  const outliers = await pool.query(
+    "SELECT * FROM outliers JOIN bets ON outliers.bet_id = bets.bet_id"
+  );
 
   res.json(outliers.rows);
 });

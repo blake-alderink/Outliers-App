@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { userActions } from "./store/userSlice";
+import { userActions } from "../store/userSlice";
 import axios from "axios";
 
 const LoginComponent = () => {
