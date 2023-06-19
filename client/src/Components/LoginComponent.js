@@ -48,18 +48,21 @@ const LoginComponent = () => {
 
     try {
       await axios
-        .post(`http://localhost:8000/loginUser`, Inputs)
+        .post(`http://localhost:8000/auth/loginUser`, Inputs)
         .then(async function (res) {
+          console.log(res.data);
           const favorites = await axios.get(
-            `http://localhost:8000/home/favorites/${res.data.id}`
+            `http://localhost:8000/home/favorites/${res.data.rows[0].user_id}`
           );
+
+          console.log(favorites.data);
 
           dispatch(
             userActions.setUser({
-              id: res.data.id,
-              username: res.data.username,
+              id: res.data.rows[0].user_id,
+              username: res.data.rows[0].username,
               isLoggedIn: true,
-              favorites: favorites,
+              favorites: favorites.data,
             })
           );
 
@@ -72,7 +75,31 @@ const LoginComponent = () => {
     //  if it fails, return the message in the error message state
   };
 
-  const createUserHandler = async () => {};
+  const createUserHandler = async () => {
+    try {
+      await axios
+        .post(`http://localhost:8000/auth/createUser`, Inputs)
+        .then(async function (res) {
+          const favorites = await axios.get(
+            `http://localhost:8000/home/favorites/${res.data.rows[0].user_id}`
+          );
+
+          dispatch(
+            userActions.setUser({
+              id: res.data.rows[0].user_id,
+              username: res.data.rows[0].username,
+              isLoggedIn: true,
+              favorites: favorites.data,
+            })
+          );
+
+          navigate("/home/outliers");
+        })
+        .catch((err) => console.log(err.message));
+    } catch (err) {
+      console.log(err.message);
+    }
+  };
 
   // const [usernameInput, setUsernameInput] = useState("");
   // const [passwordInput, setPasswordInput] = useState("");

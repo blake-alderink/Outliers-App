@@ -16,7 +16,7 @@ router.post("/loginUser", async (req, res) => {
       username,
     ]);
 
-    if (user[0] && bcrypt.compareSync(password, user.pass)) {
+    if (user.rows[0] && bcrypt.compareSync(password, user.rows[0].pass)) {
       res.status(200).json(user);
     } else {
       res.status(404).json({ message: "invalid credentials" });
@@ -28,23 +28,26 @@ router.post("/loginUser", async (req, res) => {
 
 router.post("/createUser", async (req, res) => {
   try {
-    const { username, password } = req.body;
+    let { username, password } = req.body;
 
     const userExists = await pool.query(
       "SELECT * FROM users WHERE username = $1",
       [username]
     );
 
-    if (userExists) {
-      res.status(404).json({ message: "Username already taken" });
+    if (userExists.rows[0]) {
+      res.status(404).json(userExists.rows);
     } else {
-      const hash = bcrypt(password, 14);
+      const hash = bcrypt.hashSync(password, 14);
       password = hash;
       await pool.query("INSERT INTO users (username, pass) VALUES($1,$2)", [
         username,
         password,
       ]);
-      res.status(200).json({ username: username, password: password });
+      const user = await pool.query("SELECT * FROM users WHERE username = $1", [
+        username,
+      ]);
+      res.status(200).json(user);
     }
   } catch (error) {
     res.status(500).json({ message: error.message });
