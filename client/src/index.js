@@ -16,13 +16,7 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <Provider store={store}>
     <React.StrictMode>
-      <LoginComponent />
-      <Home />
-      <LoadBettingData />
-      <LoadOutlierData />
-      <OutliersList />
       <App />
-      <FavoriteList />
     </React.StrictMode>
   </Provider>
 );

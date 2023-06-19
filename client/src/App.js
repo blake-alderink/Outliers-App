@@ -7,6 +7,10 @@ import FavoriteList from "./Components/FavoriteList";
 import OutliersCard from "./Components/OutliersCard";
 import OutliersList from "./Components/OutliersList";
 import LoginComponent from "./Components/LoginComponent";
+import { NavBar } from "./Components/NavBar";
+import { ListChoose } from "./Components/ListChoose";
+import { BodyComponent } from "./Components/BodyComponent";
+import { ListContainer } from "./Components/ListContainer";
 
 function App() {
   const dispatch = useDispatch();
@@ -25,7 +29,14 @@ function App() {
   return (
     <>
       <BrowserRouter>
-        <NavLink to="/hello">Home </NavLink>
+        <Routes>
+          <Route path="/" element={<LoginComponent />} />
+          <Route path="/home" element={<BodyComponent />}>
+            {/* <Route index element={<ListContainer />} /> */}
+            <Route path="outliers" element={<OutliersList />} />
+            <Route path="favorites" element={<FavoriteList />} />
+          </Route>
+        </Routes>
       </BrowserRouter>
     </>
   );
