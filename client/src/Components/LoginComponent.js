@@ -10,6 +10,8 @@ const LoginComponent = () => {
 
   const user = useSelector((state) => state.user);
 
+  axios.defaults.withCredentials = true;
+
   const changeHandler = (e) => {
     setInputs({ ...Inputs, [e.target.name]: e.target.value });
     console.log(Inputs);
@@ -55,7 +57,7 @@ const LoginComponent = () => {
             `http://localhost:8000/home/favorites/${res.data.rows[0].user_id}`
           );
 
-          console.log(favorites.data);
+          console.log(res.data.rows[0].username, "res.data.rows.username");
 
           dispatch(
             userActions.setUser({
@@ -65,8 +67,9 @@ const LoginComponent = () => {
               favorites: favorites.data,
             })
           );
-
+          console.log(user);
           navigate("/home/outliers");
+          console.log(user);
         })
         .catch((err) => err.message);
     } catch (err) {
@@ -80,22 +83,29 @@ const LoginComponent = () => {
       await axios
         .post(`http://localhost:8000/auth/createUser`, Inputs)
         .then(async function (res) {
-          const favorites = await axios.get(
-            `http://localhost:8000/home/favorites/${res.data.rows[0].user_id}`
-          );
+          console.log(res.status, "this is the res status?");
+          if (res.status !== 200) {
+            console.log(res.data, "hiiii");
+            setErrorMessage("res.data");
+          } else {
+            const favorites = await axios.get(
+              `http://localhost:8000/home/favorites/${res.data.rows[0].user_id}`
+            );
+            console.log(res.data.rows[0].username, "res.data.rows.username");
 
-          dispatch(
-            userActions.setUser({
-              id: res.data.rows[0].user_id,
-              username: res.data.rows[0].username,
-              isLoggedIn: true,
-              favorites: favorites.data,
-            })
-          );
+            dispatch(
+              userActions.setUser({
+                id: res.data.rows[0].user_id,
+                username: res.data.rows[0].username,
+                isLoggedIn: true,
+                favorites: favorites.data,
+              })
+            );
 
-          navigate("/home/outliers");
+            navigate("/home/outliers");
+          }
         })
-        .catch((err) => console.log(err.message));
+        .catch((err) => setErrorMessage(err.response.data));
     } catch (err) {
       console.log(err.message);
     }
@@ -105,33 +115,58 @@ const LoginComponent = () => {
   // const [passwordInput, setPasswordInput] = useState("");
   const [Inputs, setInputs] = useState({ username: "", password: "" });
   const [errorMessage, setErrorMessage] = useState("");
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    if (user.isLoggedIn) {
-      console.log("redirect ran, user is logged in");
-      return navigate("/home/outliers");
+    if (user.isLoggedIn === false) {
+      axios
+        .get("http://localhost:8000/users", { withCredentials: true })
+        .then(async function (res) {
+          if (res.data !== false) {
+            const favorites = await axios.get(
+              `http://localhost:8000/home/favorites/${res.data.user_id}`
+            );
+
+            dispatch(
+              userActions.setUser({
+                id: res.data.user_id,
+                username: res.data.username,
+                isLoggedIn: true,
+                favorites: favorites.data,
+              })
+            );
+
+            return navigate("/home/outliers");
+          }
+        })
+
+        .catch((err) => console.log(err));
     }
+
+    setIsLoading(false);
   }, []);
 
-  return (
-    <div>
-      <label>Username</label>
-      <input
-        name="username"
-        value={Inputs.username}
-        onChange={changeHandler}
-      ></input>
-      <label>Password</label>
-      <input
-        name="password"
-        value={Inputs.password}
-        onChange={changeHandler}
-      ></input>
-      <button onClick={() => loginHandler()}>Login</button>
-      <button onClick={() => createUserHandler()}>Create Account</button>
-      <h3>{errorMessage}</h3>
-    </div>
-  );
+  if (isLoading) return null;
+  else
+    return (
+      <div>
+        <label>Username</label>
+        <input
+          name="username"
+          value={Inputs.username}
+          onChange={changeHandler}
+        ></input>
+        <label>Password</label>
+        <input
+          name="password"
+          value={Inputs.password}
+          onChange={changeHandler}
+        ></input>
+        <button onClick={() => loginHandler()}>Login</button>
+        <button onClick={() => createUserHandler()}>Create Account</button>
+        <h3>{errorMessage}</h3>
+      </div>
+    );
 };
 
 export default LoginComponent;

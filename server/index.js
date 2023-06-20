@@ -7,11 +7,46 @@ const outliersRouter = require("./outliersRouter");
 const authRouter = require("./authRouter");
 const pool = require("./db");
 const cors = require("cors");
+const session = require("express-session");
 
 const app = express();
 
+const sessionConfig = {
+  name: "bettingapp",
+  secret: "this is the secret for now",
+  cookie: {
+    maxAge: 1000 * 60 * 60 * 24,
+    secure: false,
+    httpOnly: true,
+  },
+  resave: false,
+  saveUninitialized: true,
+};
+
 app.use(express.json());
-app.use(cors());
+app.use(
+  cors({
+    origin: ["http://localhost:3000"],
+    methods: ["GET", "POST"],
+    credentials: true,
+  })
+);
+app.use(session(sessionConfig));
+
+// app.use(function (req, res, next) {
+//   res.header("Access-Control-Allow-Credentials", true);
+//   res.header("Access-Control-Allow-Origin", req.header.origin);
+//   res.header(
+//     "Access-Control-Allow-Methods",
+//     "GET,PUT,POST,DELETE,UPDATE,OPTIONS"
+//   );
+//   res.header(
+//     "Access-Control-Allow-Headers",
+//     "X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept"
+//   );
+//   next();
+// });
+
 app.use("/guest", guestRouter);
 app.use("/users", userRouter);
 app.use("/home", homeRouter);

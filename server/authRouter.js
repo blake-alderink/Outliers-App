@@ -2,11 +2,13 @@ const express = require("express");
 const pool = require("./db");
 const cors = require("cors");
 const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
+const secrets = require("./config/secrets");
 
 const router = express.Router();
 
 router.use(express.json());
-router.use(cors());
+// router.use(cors());
 
 router.post("/loginUser", async (req, res) => {
   try {
@@ -17,13 +19,31 @@ router.post("/loginUser", async (req, res) => {
     ]);
 
     if (user.rows[0] && bcrypt.compareSync(password, user.rows[0].pass)) {
+      req.session.user = user.rows[0];
+      console.log(req.session.user, "req.session.user");
+
+      // const token = generateToken(user.rows[0]);
       res.status(200).json(user);
     } else {
-      res.status(404).json({ message: "invalid credentials" });
+      res.status(404).json({ errorMessage: "invalid credentials" });
     }
   } catch (error) {
     res.status(500).json(error.message);
   }
+
+  // function generateToken(user) {
+  //   const payload = {
+  //     subject: user.user_id,
+  //     username: user.username,
+  //   };
+
+  //   const options = {
+  //     expiresIn: "1d", // show other available options in the library's documentation
+  //   };
+
+  //   // extract the secret away so it can be required and used where needed
+  //   return jwt.sign(payload, secrets.jwtSecret, options); // this method is synchronous
+  // }
 });
 
 router.post("/createUser", async (req, res) => {
@@ -34,9 +54,11 @@ router.post("/createUser", async (req, res) => {
       "SELECT * FROM users WHERE username = $1",
       [username]
     );
-
+    console.log(userExists);
     if (userExists.rows[0]) {
-      res.status(404).json(userExists.rows);
+      console.log("this username is takennnn");
+
+      res.status(409).json("this username is taken");
     } else {
       const hash = bcrypt.hashSync(password, 14);
       password = hash;
@@ -50,7 +72,8 @@ router.post("/createUser", async (req, res) => {
       res.status(200).json(user);
     }
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    console.log(error.message, "hiiiilkjli");
+    res.status(401).json(error.message, "uhhhhh");
   }
 });
 

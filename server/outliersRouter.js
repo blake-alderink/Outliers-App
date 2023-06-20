@@ -5,7 +5,7 @@ const cors = require("cors");
 const router = express.Router();
 
 router.use(express.json());
-router.use(cors());
+// router.use(cors());
 
 router.get("/", async (req, res) => {
   const outliers = await pool.query(

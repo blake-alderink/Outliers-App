@@ -6,7 +6,7 @@ const FavoriteList = () => {
 
   return (
     <div>
-      <h1>Favorites List</h1>
+      <h1>This is {user.username} Favorites List</h1>
       <h2>{/* {user.favorites[0] ? user.favorites[0].team : ""} */}</h2>
       {user.favorites.map((fav) => {
         return <FavoriteCard favorite={fav} />;

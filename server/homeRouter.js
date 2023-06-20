@@ -5,7 +5,7 @@ const cors = require("cors");
 const router = express.Router();
 
 router.use(express.json());
-router.use(cors());
+// router.use(cors());
 
 router.get("/favorites/:id", async (req, res) => {
   const { id } = req.params;
