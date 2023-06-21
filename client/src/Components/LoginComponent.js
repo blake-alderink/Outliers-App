@@ -144,7 +144,7 @@ const LoginComponent = () => {
     }
 
     setIsLoading(false);
-  }, []);
+  }, [dispatch]);
 
   if (isLoading) return null;
   else

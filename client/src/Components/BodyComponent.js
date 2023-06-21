@@ -16,6 +16,7 @@ export function BodyComponent() {
   axios.defaults.withCredentials = true;
 
   useEffect(() => {
+    console.log();
     //need to run the get for the user again, but needs to be based on the authorization from the req.session
     axios
       .get("http://localhost:8000/users", { withCredentials: true })

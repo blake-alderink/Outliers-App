@@ -23,6 +23,13 @@ router.get("/", async (req, res) => {
   }
 });
 
+router.post("/logout", async (req, res) => {
+  if (req.session && req.session.user) {
+    req.session.destroy((err) => console.log(err));
+    res.json("user succesfully logged out");
+  }
+});
+
 //state could just be set upon login... and then you go to the home page where the endpoints are just gotten through home/favorites.  the post would be INSERT INTO favorites new record with userid "", bet id that matches what is for the card component.  this will automatically add it to the favorites list
 
 module.exports = router;

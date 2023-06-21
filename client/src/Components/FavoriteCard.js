@@ -9,6 +9,7 @@ const FavoriteCard = (props) => {
       <h3>
         {favorite.team} vs {favorite.opponent}
       </h3>
+      <h4>{favorite.outlier_id}</h4>
     </div>
   );
 };
