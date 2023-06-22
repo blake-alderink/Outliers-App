@@ -1,6 +1,6 @@
 import { useSelector, useDispatch } from "react-redux";
 import { filtersActions } from "../store/filtersSlice";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { outliersActions } from "../store/outliersSlice";
 
 export function FiltersComponent() {
@@ -10,49 +10,64 @@ export function FiltersComponent() {
   const betTypesFilters = ["H2H", "Spread", "Over/Under"];
   const teamFilters = ["Atlanta Braves", "Detroit Tigers"];
   const outliers = useSelector((state) => state.outliers.outliersList);
+  const [filterOptions, setFilterOptions] = useState({
+    sports: [],
+    betTypes: [],
+    teams: [],
+  });
 
   const checkHandler = (e) => {
+    //change to only change state when apply filters is selected: say on click of apply filters, map through
+
+    //need to have a list of filters that when apply filters is clicked, those filters sare then sent to the filters state which will then also filter out the list itself. so need to keep track of the filters here somehow and then send that state to the global state?
     if (sportsFilters.includes(e.target.value)) {
       if (e.target.checked) {
-        dispatch(
-          filtersActions.filterSports([...filters.sports, e.target.value])
-        );
+        setFilterOptions({
+          ...filterOptions,
+          sports: [...filterOptions.sports, e.target.value],
+        });
       } else {
-        dispatch(
-          filtersActions.filterSports(
-            filters.sports.filter((sport) => sport !== e.target.value)
-          )
-        );
+        setFilterOptions({
+          ...filterOptions,
+          sports: filterOptions.sports.filter(
+            (sport) => sport !== e.target.value
+          ),
+        });
       }
     } else if (betTypesFilters.includes(e.target.value)) {
       if (e.target.checked) {
-        dispatch(
-          filtersActions.filterBetTypes([...filters.betTypes, e.target.value])
-        );
+        setFilterOptions({
+          ...filterOptions,
+          betTypes: [...filterOptions.betTypes, e.target.value],
+        });
       } else {
-        dispatch(
-          filtersActions.filterBetTypes(
-            filters.betTypes.filter((bet) => bet !== e.target.value)
-          )
-        );
+        setFilterOptions({
+          ...filterOptions,
+          betTypes: filterOptions.betTypes.filter(
+            (betType) => betType !== e.target.value
+          ),
+        });
       }
     } else {
       if (e.target.checked) {
-        dispatch(
-          filtersActions.filterTeams([...filters.teams, e.target.value])
-        );
+        setFilterOptions({
+          ...filterOptions,
+          teams: [...filterOptions.teams, e.target.value],
+        });
       } else {
-        dispatch(
-          filtersActions.filterTeams(
-            filters.teams.filter((team) => team !== e.target.value)
-          )
-        );
+        setFilterOptions({
+          ...filterOptions,
+          teams: filterOptions.teams.filter((team) => team !== e.target.value),
+        });
       }
     }
   };
 
   const applyFilters = () => {
     console.log(outliers);
+    dispatch(filtersActions.filterBetTypes(filterOptions.betTypes));
+    dispatch(filtersActions.filterSports(filterOptions.sports));
+    dispatch(filtersActions.filterTeams(filterOptions.teams));
     dispatch(outliersActions.setIsFiltered(true));
   };
 
