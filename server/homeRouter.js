@@ -36,4 +36,18 @@ router.post("/favorites/:user/:id", async (req, res) => {
   }
 });
 
+router.delete("/favorites/:user/:id", async (req, res) => {
+  try {
+    const { id, user } = req.params;
+    const deletedFavorite = await pool.query(
+      "DELETE FROM favorites WHERE outlier_ref=$1 AND user_ref=$2",
+      [id, user]
+    );
+
+    res.json(deletedFavorite);
+  } catch (error) {
+    res.json(error);
+  }
+});
+
 module.exports = router;

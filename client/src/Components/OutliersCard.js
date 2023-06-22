@@ -33,7 +33,8 @@ const OutliersCard = (props) => {
       <button
         onClick={() => addFavorite()}
         disabled={
-          user.favorites.filter((fav) => fav.outlier_id === outlier.outlier_id)
+          user.favorites.filter((fav) => fav.outlier_ref === outlier.outlier_id)
+            .length > 0
             ? true
             : false
         }
