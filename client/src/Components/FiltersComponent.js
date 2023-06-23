@@ -87,6 +87,12 @@ export function FiltersComponent() {
     dispatch(outliersActions.setIsFiltered(true));
   };
 
+  const clearFilters = () => {
+    setFilterOptions({ sports: [], betTypes: [], teams: [] });
+
+    dispatch(outliersActions.setIsFiltered(false));
+  };
+
   useEffect(() => {
     const getFilterValues = () => {
       const betTypeFilterValues = [
@@ -112,11 +118,17 @@ export function FiltersComponent() {
         console log filters state
       </button>
       <button onClick={() => applyFilters()}>Apply Filters</button>
+      <button onClick={() => clearFilters()}>Clear Filters</button>
       <div>
         {betTypesFilters.current.map((bet_type) => {
           return (
             <div>
-              <input value={bet_type} type="checkbox" onChange={checkHandler} />
+              <input
+                value={bet_type}
+                type="checkbox"
+                onChange={checkHandler}
+                checked={filterOptions.betTypes.includes(bet_type)}
+              />
               <span>{bet_type}</span>
             </div>
           );
@@ -126,7 +138,12 @@ export function FiltersComponent() {
         {teamFilters.current.map((team) => {
           return (
             <div>
-              <input value={team} type="checkbox" onChange={checkHandler} />
+              <input
+                value={team}
+                type="checkbox"
+                onChange={checkHandler}
+                checked={filterOptions.teams.includes(team)}
+              />
               <span>{team}</span>
             </div>
           );
