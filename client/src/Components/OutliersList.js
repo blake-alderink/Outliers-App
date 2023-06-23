@@ -23,7 +23,12 @@ const OutliersList = () => {
   }, [dispatch]);
 
   const filterOutliers = () => {
-    return outliers.filter((filter) => filters.teams.includes(filter.team));
+    //if one of the categories is empty, need to ignore it.  but if there is one selected, then need to include it in what is filtered out
+    return outliers.filter(
+      (filter) =>
+        filters.betTypes.includes(filter.bet_type) &&
+        filters.teams.includes(filter.team)
+    );
   };
 
   return (

@@ -30,6 +30,7 @@ const OutliersCard = (props) => {
     <div>
       <h1>{outlier.team}</h1>
       <h3>{outlier.outlier_id}</h3>
+      <h2>{outlier.bet_type}</h2>
       <button
         onClick={() => addFavorite()}
         disabled={
