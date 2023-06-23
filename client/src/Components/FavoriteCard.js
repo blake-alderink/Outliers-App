@@ -35,6 +35,7 @@ const FavoriteCard = (props) => {
         {favorite.team} vs {favorite.opponent}
       </h3>
       <h4>{favorite.outlier_id}</h4>
+      <h2>{favorite.bet_type}</h2>
       <button onClick={() => deleteFavorite()}>Remove From Favorites</button>
     </div>
   );

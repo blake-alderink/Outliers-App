@@ -12,14 +12,14 @@ const OutliersList = () => {
 
   useEffect(() => {
     //on load of component, set state to the database. Then we can map the outliers down below in the jsx
-    const getOutliersData = async () => {
-      const outliersList = await axios
-        .get("http://localhost:8000/outliers")
-        .then((res) => res.data);
-      console.log("useeffect ran");
-      dispatch(outliersActions.addOutliers(outliersList));
-    };
-    if (outliers.length === 0) getOutliersData();
+    // const getOutliersData = async () => {
+    //   const outliersList = await axios
+    //     .get("http://localhost:8000/outliers")
+    //     .then((res) => res.data);
+    //   console.log("useeffect ran");
+    //   dispatch(outliersActions.addOutliers(outliersList));
+    // };
+    // if (outliers.length === 0) getOutliersData();
   }, [dispatch]);
 
   const filterOutliers = () => {
