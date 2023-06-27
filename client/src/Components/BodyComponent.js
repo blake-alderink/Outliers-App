@@ -54,7 +54,9 @@ export function BodyComponent() {
     <>
       <div style={{ backgroundColor: "red" }}>
         <NavBar />
-        <Outlet />
+        <div className="card-lists-section">
+          <Outlet />
+        </div>
       </div>
 
       <FiltersComponent />

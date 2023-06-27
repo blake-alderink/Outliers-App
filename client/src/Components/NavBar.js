@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import { userActions } from "../store/userSlice";
 import { useDispatch } from "react-redux";
 import axios from "axios";
+import "../styles/NavBar.css";
 
 export function NavBar() {
   const user = useSelector((state) => state.user);
@@ -24,10 +25,23 @@ export function NavBar() {
 
   return (
     <>
-      <button onClick={() => logoutUser()}>Logout</button>
-      <h1>this is the nav bar</h1>
-      <button onClick={() => logUser()}>console log state</button>
-      <ListChoose />
+      <div className="nav-bar-container">
+        <div className="logout-button-container">
+          <button onClick={() => logoutUser()} className="logout-button">
+            Logout
+          </button>
+        </div>
+        <div className="nav-bar-content-container">
+          <div className="nav-content">
+            <h2>Outliers</h2>
+          </div>
+        </div>
+      </div>
+      <div className="list-toggle-menu-container">
+        <div className="list-toggle-menu">
+          <ListChoose />
+        </div>
+      </div>
       {/* <Outlet /> */}
     </>
   );

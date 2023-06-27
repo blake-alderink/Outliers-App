@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
 import { userActions } from "../store/userSlice";
+import "../styles/Home.css";
 
 const OutliersCard = (props) => {
   const user = useSelector((state) => state.user);
@@ -27,7 +28,7 @@ const OutliersCard = (props) => {
   };
 
   return (
-    <div>
+    <div className="card-container">
       <h1>{outlier.team}</h1>
       <h3>{outlier.outlier_id}</h3>
       <h2>{outlier.bet_type}</h2>

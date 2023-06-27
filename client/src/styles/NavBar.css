@@ -1,0 +1,39 @@
+.nav-bar-container {
+  position: relative;
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  justify-content: center;
+  padding-top: 1rem;
+}
+
+.logout-button-container {
+  position: absolute;
+  right: 2vw;
+
+  background-color: yellow;
+}
+
+.nav-bar-content-container {
+  position: relative;
+}
+
+.list-toggle-menu-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+}
+
+.list-toggle-menu {
+  display: flex;
+  /* background-color: blue; */
+  gap: 5vw;
+}
+
+.list-toggle-menu-item {
+  display: flex;
+  justify-content: center;
+  width: 10vw;
+  background-color: white;
+}

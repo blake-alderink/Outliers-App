@@ -1,0 +1,20 @@
+.card-container {
+  background-color: white;
+  width: 100%;
+  max-width: 540px;
+  border-radius: 1.2rem;
+}
+
+.card-lists-section {
+  background-color: green;
+  margin-left: 10vw;
+  margin-right: 10vw;
+}
+
+.cards-list-container {
+  background-color: purple;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+}

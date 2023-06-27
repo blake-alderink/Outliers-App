@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { userActions } from "../store/userSlice";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import "../styles/Login.css";
 
 const LoginComponent = () => {
   const navigate = useNavigate();
@@ -149,22 +150,44 @@ const LoginComponent = () => {
   if (isLoading) return null;
   else
     return (
-      <div>
-        <label>Username</label>
-        <input
-          name="username"
-          value={Inputs.username}
-          onChange={changeHandler}
-        ></input>
-        <label>Password</label>
-        <input
-          name="password"
-          value={Inputs.password}
-          onChange={changeHandler}
-        ></input>
-        <button onClick={() => loginHandler()}>Login</button>
-        <button onClick={() => createUserHandler()}>Create Account</button>
-        <h3>{errorMessage}</h3>
+      <div className="login-outer-container">
+        <div className="login-inner-container">
+          <div className="inputs-outer-container">
+            <div className="input-container">
+              <label>Username</label>
+              <input
+                name="username"
+                value={Inputs.username}
+                onChange={changeHandler}
+              ></input>
+            </div>
+            <div className="input-container">
+              <label>Password</label>
+              <input
+                name="password"
+                value={Inputs.password}
+                onChange={changeHandler}
+              ></input>
+            </div>
+          </div>
+          <div className="login-buttons-outer-container">
+            <div className="login-buttons-container">
+              <button className="login-button" onClick={() => loginHandler()}>
+                Login
+              </button>
+              <button
+                className="login-button"
+                onClick={() => createUserHandler()}
+              >
+                Create Account
+              </button>
+            </div>
+            <div className="login-buttons-container">
+              <button className="login-button">Continue As Guest</button>
+            </div>
+          </div>
+          <h3>{errorMessage}</h3>
+        </div>
       </div>
     );
 };

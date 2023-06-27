@@ -32,7 +32,7 @@ const OutliersList = () => {
   };
 
   return (
-    <div>
+    <div className="cards-list-container">
       {(isFiltered ? filterOutliers() : outliers).map((outlier) => {
         // console.log(outlier);
         return <OutliersCard outlier={outlier} />;

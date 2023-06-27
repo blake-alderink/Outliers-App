@@ -1,5 +1,6 @@
 import { useSelector } from "react-redux";
 import FavoriteCard from "./FavoriteCard";
+import "../styles/Home.css";
 
 const FavoriteList = () => {
   const user = useSelector((state) => state.user);
@@ -13,7 +14,7 @@ const FavoriteList = () => {
   const isFiltered = useSelector((state) => state.outliers.isFiltered);
 
   return (
-    <div>
+    <div className="cards-list-container">
       <h1>This is {user.username} Favorites List</h1>
       <button onClick={() => console.log(filteredFavorites, filters)}>
         console log filtered Favorites

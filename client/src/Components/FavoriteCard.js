@@ -1,6 +1,7 @@
 import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
 import { userActions } from "../store/userSlice";
+import "../styles/Home.css";
 
 const FavoriteCard = (props) => {
   const { favorite } = props;
@@ -29,7 +30,7 @@ const FavoriteCard = (props) => {
   };
 
   return (
-    <div>
+    <div className="card-container">
       <h4>Favorite Card</h4>
       <h3>
         {favorite.team} vs {favorite.opponent}
