@@ -15,11 +15,6 @@ const FavoriteList = () => {
 
   return (
     <div className="cards-list-container">
-      <h1>This is {user.username} Favorites List</h1>
-      <button onClick={() => console.log(filteredFavorites, filters)}>
-        console log filtered Favorites
-      </button>
-      <h2>{/* {user.favorites[0] ? user.favorites[0].team : ""} */}</h2>
       {(isFiltered ? filteredFavorites : favorites).map((fav) => {
         return <FavoriteCard favorite={fav} />;
       })}

@@ -1,20 +1,75 @@
 .card-container {
-  background-color: white;
+  background-color: #010314;
+  /* color: #010314; */
   width: 100%;
   max-width: 540px;
-  border-radius: 1.2rem;
+  border-radius: 0.8rem;
+  border-color: #56448c81;
+  border-style: solid;
+  border-width: 0.05rem;
+  box-shadow: 0px 0px 4rem 0.6rem rgb(101, 63, 215, 0.05);
+  position: relative;
+  padding: 3rem 3rem 3rem 3rem;
+  transition: 750ms;
+}
+
+.card-container:hover {
+  box-shadow: 0px 0px 4rem 0.6rem rgb(101, 63, 215, 0.2);
 }
 
 .card-lists-section {
-  background-color: green;
   margin-left: 10vw;
   margin-right: 10vw;
 }
 
 .cards-list-container {
-  background-color: purple;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 30px;
+  gap: 4rem;
+}
+
+.card-title {
+  font-size: 1.4rem;
+  font-style: light;
+  font-family: monospace;
+}
+
+.card-info-text {
+  font-size: 1rem;
+  font-style: light;
+  font-family: monospace;
+}
+
+.body-style {
+  background-color: #010314;
+}
+
+.heart-svg {
+  stroke: #5c4d8b81;
+  stroke-width: 0.08rem;
+  width: 5vw;
+  transition-duration: 300ms;
+  filter: drop-shadow(0px 0px 5px rgb(101, 63, 215, 0.15));
+  cursor: pointer;
+  position: absolute;
+  right: 3rem;
+
+  /* right: 2rem;
+  top: 2rem; */
+}
+
+.heart-svg:hover {
+  fill: rgba(53, 26, 110, 0.516);
+  filter: drop-shadow(0px 0px 15px rgb(101, 63, 215));
+}
+
+.heart-svg.is-favorite {
+  fill: white;
+}
+
+h1 {
+  line-height: 1;
+  margin: 0;
+  padding: 0;
 }

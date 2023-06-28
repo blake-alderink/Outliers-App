@@ -8,6 +8,7 @@ import axios from "axios";
 import { useDispatch } from "react-redux";
 import { userActions } from "../store/userSlice";
 import { outliersActions } from "../store/outliersSlice";
+import "../styles/Home.css";
 
 export function BodyComponent() {
   const user = useSelector((state) => state.user);
@@ -52,14 +53,13 @@ export function BodyComponent() {
   }, [dispatch]);
   return (
     <>
-      <div style={{ backgroundColor: "red" }}>
+      <div className="body-style">
         <NavBar />
+        <FiltersComponent />
         <div className="card-lists-section">
           <Outlet />
         </div>
       </div>
-
-      <FiltersComponent />
     </>
   );
 }

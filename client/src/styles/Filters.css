@@ -1,0 +1,25 @@
+.filters-section {
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  flex-direction: row-reverse;
+  margin-bottom: 3rem;
+  margin-top: 3rem;
+  max-width: 540px;
+}
+
+.filters-inner-container {
+  width: 33.3333%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.filters-buttons-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  justify-content: right;
+  align-content: center;
+}

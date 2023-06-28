@@ -2,6 +2,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { filtersActions } from "../store/filtersSlice";
 import { useEffect, useState, useRef } from "react";
 import { outliersActions } from "../store/outliersSlice";
+import "../styles/Filters.css";
 
 export function FiltersComponent() {
   const filters = useSelector((state) => state.filters);
@@ -113,41 +114,53 @@ export function FiltersComponent() {
 
   return (
     <>
-      <h1>Filters Component</h1>
-      <button onClick={() => console.log(filters, outliers, bets)}>
-        console log filters state
-      </button>
-      <button onClick={() => applyFilters()}>Apply Filters</button>
-      <button onClick={() => clearFilters()}>Clear Filters</button>
-      <div>
-        {betTypesFilters.current.map((bet_type) => {
-          return (
-            <div>
-              <input
-                value={bet_type}
-                type="checkbox"
-                onChange={checkHandler}
-                checked={filterOptions.betTypes.includes(bet_type)}
-              />
-              <span>{bet_type}</span>
-            </div>
-          );
-        })}
-      </div>
-      <div>
-        {teamFilters.current.map((team) => {
-          return (
-            <div>
-              <input
-                value={team}
-                type="checkbox"
-                onChange={checkHandler}
-                checked={filterOptions.teams.includes(team)}
-              />
-              <span>{team}</span>
-            </div>
-          );
-        })}
+      <div className="filters-section">
+        <div className="filters-inner-container">
+          <div className="filters-buttons-container">
+            <button onClick={() => applyFilters()} className="filters-button">
+              Apply Filters
+            </button>
+            <button onClick={() => clearFilters()} className="filters-button">
+              Clear Filters
+            </button>
+          </div>
+        </div>
+        <div className="filters-inner-container">
+          <div className="middle-filters-container">
+            <div>Bet Type</div>
+            {betTypesFilters.current.map((bet_type) => {
+              return (
+                <div>
+                  <input
+                    value={bet_type}
+                    type="checkbox"
+                    onChange={checkHandler}
+                    checked={filterOptions.betTypes.includes(bet_type)}
+                  />
+                  <span>{bet_type}</span>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+        <div className="filters-inner-container">
+          <div className="middle-filters-container">
+            <div>Sport</div>
+            {teamFilters.current.map((team) => {
+              return (
+                <div>
+                  <input
+                    value={team}
+                    type="checkbox"
+                    onChange={checkHandler}
+                    checked={filterOptions.teams.includes(team)}
+                  />
+                  <span>{team}</span>
+                </div>
+              );
+            })}
+          </div>
+        </div>
       </div>
     </>
   );
