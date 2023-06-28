@@ -51,6 +51,28 @@ const OutliersCard = (props) => {
 
   return (
     <div className="card-container">
+      <div className="card-title">
+        {outlier.team} <span className="card-info-text-small">vs</span>{" "}
+        {outlier.opponent}
+      </div>
+      <div className="gradient-background-container">
+        <div className="gradient-background">
+          {" "}
+          <span className="bet-type-text">{outlier.bet_type}</span>
+        </div>
+      </div>
+      <div className="card-info-text">Average Line: {outlier.average_line}</div>
+      <div className="outlier-container">
+        <div className="outlier-inner-container">
+          Outlier: {outlier.outlier_line}
+        </div>
+        <div className="outlier-inner-container">
+          <div>
+            <span>{outlier.bookmaker}</span>
+          </div>
+        </div>
+      </div>
+
       <div
         onClick={() => {
           if (
@@ -77,23 +99,10 @@ const OutliersCard = (props) => {
           />
         }
       </div>
-      <div className="card-title">
-        {outlier.team} <span className="card-info-text">vs</span>{" "}
-        {outlier.opponent}
-      </div>
-      <h3>{outlier.outlier_id}</h3>
-      <h2>{outlier.bet_type}</h2>
-      <button
-        onClick={() => addFavorite()}
-        disabled={
-          user.favorites.filter((fav) => fav.outlier_ref === outlier.outlier_id)
-            .length > 0
-            ? true
-            : false
-        }
-      >
-        Add To Favorites
-      </button>
+
+      {/* <div style={{ display: "none" }} onClick={() => console.log(outlier)}>
+        log outlier
+      </div> */}
     </div>
   );
 };
