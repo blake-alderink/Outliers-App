@@ -58,15 +58,15 @@ app.use("/bets", betsRouter);
 app.use("/outliers", outliersRouter);
 app.use("/auth", authRouter);
 
-app.get("/", async (req, res) => {
-  try {
-    const users = await pool.query("SELECT * FROM users");
-    res.json(users.rows);
-  } catch (error) {
-    console.error(error.message);
-  }
-  // res.json("if this is showing up, then this is showing you that this is working")
-});
+// app.get("/", async (req, res) => {
+//   try {
+//     const users = await pool.query("SELECT * FROM users");
+//     res.json(users.rows);
+//   } catch (error) {
+//     console.error(error.message);
+//   }
+//   // res.json("if this is showing up, then this is showing you that this is working")
+// });
 
 app.get("/*", (req, res) => {
   res.sendFile(path.join(__dirname, "../client/build", "index.html"));
