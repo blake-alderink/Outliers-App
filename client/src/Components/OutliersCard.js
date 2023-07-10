@@ -12,14 +12,12 @@ const OutliersCard = (props) => {
   const addFavorite = async () => {
     try {
       await axios
-        .post(
-          `http://localhost:8000/home/favorites/${user.id}/${outlier.outlier_id}`
-        )
+        .post(`/home/favorites/${user.id}/${outlier.outlier_id}`)
         .then((res) => console.log(res))
         .catch((err) => console.log(err));
 
       await axios
-        .get(`http://localhost:8000/home/favorites/${user.id}`)
+        .get(`/home/favorites/${user.id}`)
         .then((res) =>
           dispatch(userActions.setUser({ ...user, favorites: res.data }))
         )
@@ -31,14 +29,12 @@ const OutliersCard = (props) => {
   const deleteFavorite = async () => {
     try {
       await axios
-        .delete(
-          `http://localhost:8000/home/favorites/${user.id}/${outlier.outlier_id}`
-        )
+        .delete(`/home/favorites/${user.id}/${outlier.outlier_id}`)
         .then((res) => console.log(res.data))
         .catch((err) => console.log(err));
 
       await axios
-        .get(`http://localhost:8000/home/favorites/${user.id}`)
+        .get(`/home/favorites/${user.id}`)
         .then((res) =>
           dispatch(userActions.setUser({ ...user, favorites: res.data }))
         )
