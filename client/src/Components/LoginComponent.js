@@ -51,11 +51,11 @@ const LoginComponent = () => {
 
     try {
       await axios
-        .post(`http://localhost:8000/auth/loginUser`, Inputs)
+        .post(`/auth/loginUser`, Inputs)
         .then(async function (res) {
           console.log(res.data);
           const favorites = await axios.get(
-            `http://localhost:8000/home/favorites/${res.data.rows[0].user_id}`
+            `/home/favorites/${res.data.rows[0].user_id}`
           );
 
           console.log(res.data.rows[0].username, "res.data.rows.username");
