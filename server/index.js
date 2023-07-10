@@ -33,7 +33,7 @@ app.use(
   })
 );
 
-app.use(express.static(path.resolve(__dirname, "../build")));
+app.use(express.static(path.resolve(__dirname, "../client/build")));
 
 app.use(session(sessionConfig));
 
@@ -69,7 +69,7 @@ app.get("/", async (req, res) => {
 });
 
 app.get("/*", (req, res) => {
-  res.sendFile(path.join(__dirname, "../build", "index.html"));
+  res.sendFile(path.join(__dirname, "../client/build", "index.html"));
 });
 
 const PORT = process.env.PORT || 8000;
