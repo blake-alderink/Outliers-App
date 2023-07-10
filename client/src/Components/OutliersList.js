@@ -41,7 +41,6 @@ const OutliersList = () => {
         // console.log(outlier);
         return <OutliersCard outlier={outlier} />;
       })} */}
-      <h1>This is the outliers list component</h1>
     </div>
   );
 };

@@ -41,7 +41,13 @@ export const LoadBettingData = () => {
 
   async function formatData() {
     let gameArr = dummyData;
+
     for (let i = 0; i < gameArr.length; i++) {
+      const sport = gameArr[i].sport_title;
+      console.log(
+        sport,
+        "this is where the sport_title key value pair is supposed to be coming from"
+      );
       const bookmakersArr = gameArr[i].bookmakers;
 
       for (let j = 0; j < bookmakersArr.length; j++) {
@@ -50,6 +56,7 @@ export const LoadBettingData = () => {
         for (let k = 0; k < markets.length; k++) {
           console.log("another market");
           let marketObj = markets[k];
+          console.log(sport, "is this console.log of sport working?");
 
           for (let l = 0; l < marketObj.outcomes.length; l++) {
             const opponent =
@@ -70,6 +77,7 @@ export const LoadBettingData = () => {
                   `${gameArr[i].home_team}`.split(" ").join("")
                 ),
                 points_amount: Number(marketObj.outcomes[l].point),
+                sport: sport,
               };
             } else {
               const pointsVal = marketObj.outcomes[l].point
@@ -86,6 +94,7 @@ export const LoadBettingData = () => {
                   `${marketObj.outcomes[l].name}`.split(" ").join("")
                 ),
                 points_amount: Number(pointsVal),
+                sport: sport,
               };
             }
 

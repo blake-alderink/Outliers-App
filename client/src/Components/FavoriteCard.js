@@ -33,16 +33,59 @@ const FavoriteCard = (props) => {
 
   return (
     <div className="card-container">
-      <h4>Favorite Card</h4>
-      <div onClick={() => deleteFavorite()}>
-        {<FavoriteHeart isFavorite={true} />}
+      <div className="card-title">
+        {favorite.team} <span className="card-info-text-small">vs</span>{" "}
+        {favorite.opponent}
       </div>
-      <h3>
-        {favorite.team} vs {favorite.opponent}
-      </h3>
-      <h4>{favorite.outlier_id}</h4>
-      <h2>{favorite.bet_type}</h2>
-      <button onClick={() => deleteFavorite()}>Remove From Favorites</button>
+      <div className="gradient-background-container">
+        <div className="gradient-background">
+          {" "}
+          <span className="bet-type-text">{favorite.bet_type}</span>
+        </div>
+      </div>
+      <div className="card-info-text">
+        Average Line: {favorite.average_line}
+      </div>
+      <div className="outlier-container">
+        <div className="outlier-inner-container">
+          Outlier: {favorite.outlier_line}
+        </div>
+        <div className="outlier-inner-container">
+          <div>
+            <span>{favorite.bookmaker}</span>
+          </div>
+        </div>
+      </div>
+
+      <div
+        onClick={() => {
+          if (
+            user.favorites.filter(
+              (fav) => fav.outlier_ref === favorite.outlier_id
+            ).length < 1
+          ) {
+          } else {
+            deleteFavorite();
+            console.log("supposed to delete");
+          }
+        }}
+      >
+        {
+          <FavoriteHeart
+            isFavorite={
+              user.favorites.filter(
+                (fav) => fav.outlier_ref === favorite.outlier_id
+              ).length > 0
+                ? true
+                : false
+            }
+          />
+        }
+      </div>
+
+      {/* <div style={{ display: "none" }} onClick={() => console.log(outlier)}>
+        log outlier
+      </div> */}
     </div>
   );
 };

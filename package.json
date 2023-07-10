@@ -1,0 +1,22 @@
+{
+  "name": "betting-lines-pern-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "main": "./server/index.js",
+    "start": "node ./server/index.js && npm build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/blake-alderink/Outliers-App.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/blake-alderink/Outliers-App/issues"
+  },
+  "homepage": "https://github.com/blake-alderink/Outliers-App#readme"
+}

@@ -62,6 +62,7 @@ const OutliersCard = (props) => {
         </div>
       </div>
       <div className="card-info-text">Average Line: {outlier.average_line}</div>
+      <div className="card-info-text"> Sport: {outlier.sport}</div>
       <div className="outlier-container">
         <div className="outlier-inner-container">
           Outlier: {outlier.outlier_line}

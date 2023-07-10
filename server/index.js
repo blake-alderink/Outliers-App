@@ -6,6 +6,7 @@ const betsRouter = require("./betsRouter");
 const outliersRouter = require("./outliersRouter");
 const authRouter = require("./authRouter");
 const pool = require("./db");
+const path = require("path");
 const cors = require("cors");
 const session = require("express-session");
 
@@ -31,6 +32,9 @@ app.use(
     credentials: true,
   })
 );
+
+app.use(express.static(path.resolve(__dirname, "../build")));
+
 app.use(session(sessionConfig));
 
 // app.use(function (req, res, next) {
@@ -64,8 +68,14 @@ app.get("/", async (req, res) => {
   // res.json("if this is showing up, then this is showing you that this is working")
 });
 
-app.listen(8000, () => {
-  console.log("app now listening on port 8000");
+app.get("/*", (req, res) => {
+  res.sendFile(path.join(__dirname, "../build", "index.html"));
+});
+
+const PORT = process.env.PORT || 8000;
+
+app.listen(PORT, () => {
+  console.log(`app now listening on port ${PORT}`);
 });
 
 //on load, you would get user that matches, and set the state of the user. and then you would run the axios.get for the favorites, that would get the favorites that are assoicated with that user.

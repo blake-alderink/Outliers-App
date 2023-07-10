@@ -2,4 +2,7 @@ body {
   margin: 0;
   padding: 0;
   color: white;
+  background-color: #010314;
+  font-family: monospace;
+  font-size: 1rem;
 }

@@ -16,11 +16,11 @@ router.get("/", async (req, res) => {
 });
 
 router.post("/", async (req, res) => {
-  const { bet_id, bookmaker, betting_line, average_line } = req.body;
+  const { bet_id, bookmaker, betting_line, average_line, sport } = req.body;
 
   const newOutlier = await pool.query(
-    "INSERT INTO outliers (outlier_line, average_line, bookmaker, bet_id) VALUES($1,$2,$3,$4)",
-    [betting_line, average_line, bookmaker, bet_id]
+    "INSERT INTO outliers (outlier_line, average_line, bookmaker, bet_id, sport) VALUES($1,$2,$3,$4, $5)",
+    [betting_line, average_line, bookmaker, bet_id, sport]
   );
 
   res.json(newOutlier.rows);

@@ -14,10 +14,17 @@ const FavoriteList = () => {
   const isFiltered = useSelector((state) => state.outliers.isFiltered);
 
   return (
-    <div className="cards-list-container">
-      {(isFiltered ? filteredFavorites : favorites).map((fav) => {
-        return <FavoriteCard favorite={fav} />;
-      })}
+    <div>
+      {favorites.length === 0 ? (
+        <div style={{ fontStyle: "italic" }}>No favorites to show </div>
+      ) : (
+        ""
+      )}
+      <div className="cards-list-container">
+        {(isFiltered ? filteredFavorites : favorites).map((fav) => {
+          return <FavoriteCard favorite={fav} />;
+        })}
+      </div>
     </div>
   );
 };

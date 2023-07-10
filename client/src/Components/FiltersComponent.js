@@ -127,11 +127,12 @@ export function FiltersComponent() {
         </div>
         <div className="filters-inner-container">
           <div className="middle-filters-container">
-            <div>Bet Type</div>
+            <label className="filter-label">Bet Type</label>
             {betTypesFilters.current.map((bet_type) => {
               return (
-                <div>
+                <div className="filter-checkbox">
                   <input
+                    className="checkbox"
                     value={bet_type}
                     type="checkbox"
                     onChange={checkHandler}
@@ -145,15 +146,16 @@ export function FiltersComponent() {
         </div>
         <div className="filters-inner-container">
           <div className="middle-filters-container">
-            <div>Sport</div>
+            <label className="filter-label">Sport</label>
             {teamFilters.current.map((team) => {
               return (
-                <div>
+                <div className="filter-checkbox">
                   <input
                     value={team}
                     type="checkbox"
                     onChange={checkHandler}
                     checked={filterOptions.teams.includes(team)}
+                    className="checkbox"
                   />
                   <span>{team}</span>
                 </div>

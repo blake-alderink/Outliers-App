@@ -17,17 +17,20 @@ const LoadOutlierData = () => {
   };
 
   const outlierAlgo = async (arr) => {
-    console.log("made it to the outlierAlgo");
+    console.log(arr, "this is the log of arr");
 
+    //in this function the arr is the list of unique bets, e.g. h2h braves vs tigers
     const outliers = [];
 
     for (let i = 0; i < arr.length; i++) {
-      console.log(arr[i].uniquestring);
       const allBetsWithThisString = await axios
         .get(`http://localhost:8000/bets/unique/${arr[i].uniquestring}`)
         .then((res) => res.data);
-      //still need to add this endpoint: gets all bets with the unique string of that
-      console.log(allBetsWithThisString);
+      //all bets with this string means all bets for the same betting game and type from the different bookmakers
+
+      let sport = allBetsWithThisString[0].sport;
+      console.log(sport, "this is the sport");
+
       let total = 0;
       let bettingBasis;
 
@@ -38,25 +41,29 @@ const LoadOutlierData = () => {
       }
 
       for (let j = 0; j < allBetsWithThisString.length; j++) {
-        console.log("made it to this array", bettingBasis);
-
         const bettingLine = allBetsWithThisString[j][`${bettingBasis}`];
 
         total += Number(bettingLine);
       }
 
       let average = Number((total / allBetsWithThisString.length).toFixed(1));
-      console.log(average);
+      console.log(average, "this is the average");
       let betting_diff = 0;
       let outlier = {
         bet_id: "",
         bookmaker: "",
         betting_line: 10000,
         average_line: average,
+        sport: sport,
       };
 
       for (let k = 0; k < allBetsWithThisString.length; k++) {
         const diff = average - allBetsWithThisString[k][`${bettingBasis}`];
+
+        console.log(
+          allBetsWithThisString[k].sport,
+          "this is supposed to be the sport"
+        );
 
         if (diff > betting_diff) {
           betting_diff = diff;

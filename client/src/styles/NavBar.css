@@ -5,6 +5,9 @@
   align-items: center;
   justify-content: center;
   padding-top: 1rem;
+  font-family: monospace;
+  font-weight: normal;
+  font-size: 1rem;
 }
 
 .logout-button-container {
@@ -32,7 +35,59 @@
 
 .list-toggle-menu-item {
   display: flex;
+  align-items: center;
   justify-content: center;
-  width: 10vw;
+  min-width: 100px;
+  font-style: normal;
+  text-decoration: none;
+  background-color: transparent;
+  font-family: monospace;
+  color: white;
+  padding: 0.5rem 1rem 0.5rem 1rem;
+  border-radius: 100vw;
+  border-color: #56448c81;
+  border-style: solid;
+  border-width: 0.05rem;
+  box-shadow: 0px 0px 4rem 0.6rem rgb(101, 63, 215, 0.1);
+  cursor: pointer;
+  transition-duration: 300ms;
+}
+
+.list-toggle-menu-item:hover {
+  background-color: rgba(53, 26, 110, 0.516);
+  box-shadow: 0px 0px 4rem 0.6rem rgb(101, 63, 215, 0.2);
+
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+.list-toggle-menu-item.active {
   background-color: white;
+  box-shadow: 0px 0px 4rem 0.6rem rgb(101, 63, 215, 0.4);
+  color: #010314;
+}
+
+.logout-button {
+  background-color: transparent;
+  font-family: monospace;
+  color: white;
+  padding: 1rem;
+  border-radius: 0.2rem;
+  border-color: #56448c81;
+  border-style: solid;
+  border-width: 0.05rem;
+  box-shadow: 0px 0px 4rem 0.6rem rgb(101, 63, 215, 0.1);
+  cursor: pointer;
+  transition-duration: 300ms;
+}
+
+.logout-button:hover {
+  background-color: rgba(53, 26, 110, 0.516);
+  box-shadow: 0px 0px 4rem 0.6rem rgb(101, 63, 215, 0.2);
+
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+.logout-button:active {
+  background-color: white;
+  color: rgba(53, 26, 110, 0.516);
 }

@@ -152,6 +152,11 @@ const LoginComponent = () => {
     return (
       <div className="login-outer-container">
         <div className="login-inner-container">
+          <h1
+            style={{ margin: "auto", fontSize: "3rem", marginBottom: "1rem" }}
+          >
+            Outliers
+          </h1>
           <div className="inputs-outer-container">
             <div className="input-container">
               <label>Username</label>
@@ -186,7 +191,29 @@ const LoginComponent = () => {
               <button className="login-button">Continue As Guest</button>
             </div>
           </div>
-          <h3>{errorMessage}</h3>
+          <h3 style={{ color: "white" }}>{errorMessage}</h3>
+        </div>
+        <div
+          style={{
+            marginLeft: "20vw",
+            marginRight: "20vw",
+            textAlign: "center",
+            fontSize: "1.2rem",
+          }}
+        >
+          Find the outlier bet opportunities so you can get the best odds.
+        </div>
+        <div
+          style={{
+            marginTop: "1rem",
+            marginLeft: "10vw",
+            marginRight: "10vw",
+            textAlign: "center",
+            fontSize: ".8rem",
+          }}
+        >
+          Please note: guest users are unable to select favorites. Please create
+          an account in order to save favorites. Thanks!
         </div>
       </div>
     );

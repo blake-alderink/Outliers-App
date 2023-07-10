@@ -9,6 +9,8 @@ import { useDispatch } from "react-redux";
 import { userActions } from "../store/userSlice";
 import { outliersActions } from "../store/outliersSlice";
 import "../styles/Home.css";
+import { LoadBettingData } from "./LoadBettingData";
+import LoadOutlierData from "./LoadOutlierData";
 
 export function BodyComponent() {
   const user = useSelector((state) => state.user);
@@ -56,6 +58,8 @@ export function BodyComponent() {
       <div className="body-style">
         <NavBar />
         <FiltersComponent />
+        <LoadBettingData />
+        <LoadOutlierData />
         <div className="card-lists-section">
           <Outlet />
         </div>

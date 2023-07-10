@@ -35,7 +35,7 @@ router.post("/", async (req, res) => {
   try {
     const bet = req.body;
     const newBet = await pool.query(
-      "INSERT INTO bets (bet_type, betting_line, team, opponent, bookmaker, uniquestring, points_amount) VALUES($1,$2,$3,$4,$5,$6,$7)",
+      "INSERT INTO bets (bet_type, betting_line, team, opponent, bookmaker, uniquestring, points_amount, sport) VALUES($1,$2,$3,$4,$5,$6,$7, $8)",
       [
         bet.bet_type,
         bet.betting_line,
@@ -44,6 +44,7 @@ router.post("/", async (req, res) => {
         bet.bookmaker,
         bet.uniquestring,
         bet.points_amount,
+        bet.sport,
       ]
     );
     res.json(newBet.rows);
