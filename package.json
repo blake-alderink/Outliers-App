@@ -20,7 +20,7 @@
   "scripts": {
     "main": "./server/index.js",
     "start": "node ./server/index.js && npm build",
-    "build": "cd client && react-scripts build",
+    "build": "cd client && npm build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
