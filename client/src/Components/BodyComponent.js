@@ -22,9 +22,7 @@ export function BodyComponent() {
 
   useEffect(() => {
     const getOutliersData = async () => {
-      const outliersList = await axios
-        .get("http://localhost:8000/outliers")
-        .then((res) => res.data);
+      const outliersList = await axios.get("/outliers").then((res) => res.data);
       console.log("useeffect ran");
       dispatch(outliersActions.addOutliers(outliersList));
     };
@@ -32,14 +30,14 @@ export function BodyComponent() {
 
     //need to run the get for the user again, but needs to be based on the authorization from the req.session
     axios
-      .get("http://localhost:8000/users", { withCredentials: true })
+      .get("/users", { withCredentials: true })
       .then(async function (res) {
         if (res.data === false) {
           navigate("/");
         }
 
         const favorites = await axios.get(
-          `http://localhost:8000/home/favorites/${res.data.user_id}`
+          `/home/favorites/${res.data.user_id}`
         );
 
         dispatch(

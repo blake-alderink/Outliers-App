@@ -82,7 +82,7 @@ const LoginComponent = () => {
   const createUserHandler = async () => {
     try {
       await axios
-        .post(`http://localhost:8000/auth/createUser`, Inputs)
+        .post(`/auth/createUser`, Inputs)
         .then(async function (res) {
           console.log(res.status, "this is the res status?");
           if (res.status !== 200) {
@@ -90,7 +90,7 @@ const LoginComponent = () => {
             setErrorMessage("res.data");
           } else {
             const favorites = await axios.get(
-              `http://localhost:8000/home/favorites/${res.data.rows[0].user_id}`
+              `/home/favorites/${res.data.rows[0].user_id}`
             );
             console.log(res.data.rows[0].username, "res.data.rows.username");
 
@@ -121,11 +121,11 @@ const LoginComponent = () => {
   useEffect(() => {
     if (user.isLoggedIn === false) {
       axios
-        .get("http://localhost:8000/users", { withCredentials: true })
+        .get("/users", { withCredentials: true })
         .then(async function (res) {
           if (res.data !== false) {
             const favorites = await axios.get(
-              `http://localhost:8000/home/favorites/${res.data.user_id}`
+              `/home/favorites/${res.data.user_id}`
             );
 
             dispatch(

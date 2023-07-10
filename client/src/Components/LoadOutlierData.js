@@ -24,7 +24,7 @@ const LoadOutlierData = () => {
 
     for (let i = 0; i < arr.length; i++) {
       const allBetsWithThisString = await axios
-        .get(`http://localhost:8000/bets/unique/${arr[i].uniquestring}`)
+        .get(`/bets/unique/${arr[i].uniquestring}`)
         .then((res) => res.data);
       //all bets with this string means all bets for the same betting game and type from the different bookmakers
 

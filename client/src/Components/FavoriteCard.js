@@ -13,14 +13,12 @@ const FavoriteCard = (props) => {
   const deleteFavorite = async () => {
     try {
       await axios
-        .delete(
-          `http://localhost:8000/home/favorites/${user.id}/${favorite.outlier_ref}`
-        )
+        .delete(`/home/favorites/${user.id}/${favorite.outlier_ref}`)
         .then((res) => console.log(res.data))
         .catch((err) => console.log(err));
 
       await axios
-        .get(`http://localhost:8000/home/favorites/${user.id}`)
+        .get(`/home/favorites/${user.id}`)
         .then((res) =>
           dispatch(userActions.setUser({ ...user, favorites: res.data }))
         )
