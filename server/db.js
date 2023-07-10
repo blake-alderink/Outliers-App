@@ -1,6 +1,6 @@
 const Pool = require("pg").Pool;
 
-const database_url =
+const DATABASE_URL =
   process.env.DATABASE_URL ||
   `postgres://opxyzjlpzdjrmn:619ee8018a2280cebfe11d00863b0cf5c45f7233fd37df9071d8d18f01375cd9@ec2-3-221-177-27.compute-1.amazonaws.com:5432/d2n2vdjgpbfa51
 `;
@@ -16,7 +16,7 @@ const database_url =
 // });
 
 const pool = new Pool({
-  connectionString: database_url,
+  connectionString: DATABASE_URL,
   ssl: {
     rejectUnauthorized: false,
   },
