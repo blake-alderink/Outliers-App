@@ -69,6 +69,8 @@ router.post("/createUser", async (req, res) => {
       const user = await pool.query("SELECT * FROM users WHERE username = $1", [
         username,
       ]);
+
+      req.session.user = user;
       res.status(200).json(user);
     }
   } catch (error) {
