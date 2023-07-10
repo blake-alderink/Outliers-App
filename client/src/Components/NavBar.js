@@ -16,9 +16,7 @@ export function NavBar() {
   };
 
   const logoutUser = async () => {
-    await axios
-      .post("http://localhost:8000/users/logout", "")
-      .then((res) => console.log(res.data));
+    await axios.post("/users/logout", "").then((res) => console.log(res.data));
     dispatch(userActions.resetState());
     navigate("/");
   };
