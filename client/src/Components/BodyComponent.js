@@ -56,8 +56,8 @@ export function BodyComponent() {
       <div className="body-style">
         <NavBar />
         <FiltersComponent />
-        <LoadBettingData />
-        <LoadOutlierData />
+        {/* <LoadBettingData />
+        <LoadOutlierData /> */}
         <div className="card-lists-section">
           <Outlet />
         </div>
