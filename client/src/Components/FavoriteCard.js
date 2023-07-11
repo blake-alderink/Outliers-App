@@ -4,6 +4,7 @@ import { userActions } from "../store/userSlice";
 import "../styles/Home.css";
 import { FavoriteHeart } from "../assets/heart";
 import React from "react";
+import { bettingLinks } from "../functions/bettinglinks";
 
 const FavoriteCard = (props) => {
   const { favorite } = props;
@@ -47,7 +48,10 @@ const FavoriteCard = (props) => {
       <div className="card-info-text">
         Average Line: {favorite.average_line}
       </div>
-      <div className="outlier-container">
+      <div
+        className="outlier-container"
+        onClick={() => window.open(bettingLinks(favorite.bookmaker), "_blank")}
+      >
         <div className="outlier-inner-container">
           Outlier: {favorite.outlier_line}
         </div>

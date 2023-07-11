@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { userActions } from "../store/userSlice";
 import "../styles/Home.css";
 import { FavoriteHeart } from "../assets/heart";
+import { bettingLinks } from "../functions/bettinglinks";
 
 const OutliersCard = (props) => {
   const user = useSelector((state) => state.user);
@@ -62,7 +63,10 @@ const OutliersCard = (props) => {
       </div>
       <div className="card-info-text">Average Line: {outlier.average_line}</div>
       <div className="card-info-text"> Sport: {outlier.sport}</div>
-      <div className="outlier-container">
+      <div
+        className="outlier-container"
+        onClick={() => window.open(bettingLinks(outlier.bookmaker), "_blank")}
+      >
         <div className="outlier-inner-container">
           Outlier: {outlier.outlier_line}
         </div>
