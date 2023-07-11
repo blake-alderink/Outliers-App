@@ -17,12 +17,16 @@ export function BodyComponent() {
   const outliers = useSelector((state) => state.outliers.outliersList);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const database_url = process.env.REACT_APP_API_URI;
 
   axios.defaults.withCredentials = true;
 
   useEffect(() => {
+    console.log(database_url);
     const getOutliersData = async () => {
-      const outliersList = await axios.get("/outliers").then((res) => res.data);
+      const outliersList = await axios
+        .get(`${database_url}/outliers`)
+        .then((res) => res.data);
       console.log("useeffect ran");
       dispatch(outliersActions.addOutliers(outliersList));
     };
@@ -30,14 +34,14 @@ export function BodyComponent() {
 
     //need to run the get for the user again, but needs to be based on the authorization from the req.session
     axios
-      .get("/users", { withCredentials: true })
+      .get(`${database_url}/users`, { withCredentials: true })
       .then(async function (res) {
         if (res.data === false) {
           navigate("/");
         }
 
         const favorites = await axios.get(
-          `/home/favorites/${res.data.user_id}`
+          `${database_url}/home/favorites/${res.data.user_id}`
         );
 
         dispatch(

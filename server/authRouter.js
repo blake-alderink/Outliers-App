@@ -70,7 +70,7 @@ router.post("/createUser", async (req, res) => {
         username,
       ]);
 
-      req.session.user = user;
+      req.session.user = user.rows[0];
       res.status(200).json(user);
     }
   } catch (error) {

@@ -10,13 +10,16 @@ export function NavBar() {
   const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const database_url = process.env.REACT_APP_API_URI;
 
   const logUser = () => {
     console.log(user);
   };
 
   const logoutUser = async () => {
-    await axios.post("/users/logout", "").then((res) => console.log(res.data));
+    await axios
+      .post(`${database_url}/users/logout`, "")
+      .then((res) => console.log(res.data));
     dispatch(userActions.resetState());
     navigate("/");
   };

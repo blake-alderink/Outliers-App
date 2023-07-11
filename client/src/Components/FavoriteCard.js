@@ -9,16 +9,19 @@ const FavoriteCard = (props) => {
   const { favorite } = props;
   const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
+  const database_url = process.env.REACT_APP_API_URI;
 
   const deleteFavorite = async () => {
     try {
       await axios
-        .delete(`/home/favorites/${user.id}/${favorite.outlier_ref}`)
+        .delete(
+          `${database_url}/home/favorites/${user.id}/${favorite.outlier_ref}`
+        )
         .then((res) => console.log(res.data))
         .catch((err) => console.log(err));
 
       await axios
-        .get(`/home/favorites/${user.id}`)
+        .get(`${database_url}/home/favorites/${user.id}`)
         .then((res) =>
           dispatch(userActions.setUser({ ...user, favorites: res.data }))
         )

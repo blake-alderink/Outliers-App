@@ -8,16 +8,17 @@ const OutliersCard = (props) => {
   const user = useSelector((state) => state.user);
   const outlier = props.outlier;
   const dispatch = useDispatch();
+  const database_url = process.env.REACT_APP_API_URI;
 
   const addFavorite = async () => {
     try {
       await axios
-        .post(`/home/favorites/${user.id}/${outlier.outlier_id}`)
+        .post(`${database_url}/home/favorites/${user.id}/${outlier.outlier_id}`)
         .then((res) => console.log(res))
         .catch((err) => console.log(err));
 
       await axios
-        .get(`/home/favorites/${user.id}`)
+        .get(`${database_url}/home/favorites/${user.id}`)
         .then((res) =>
           dispatch(userActions.setUser({ ...user, favorites: res.data }))
         )
@@ -29,12 +30,14 @@ const OutliersCard = (props) => {
   const deleteFavorite = async () => {
     try {
       await axios
-        .delete(`/home/favorites/${user.id}/${outlier.outlier_id}`)
+        .delete(
+          `${database_url}/home/favorites/${user.id}/${outlier.outlier_id}`
+        )
         .then((res) => console.log(res.data))
         .catch((err) => console.log(err));
 
       await axios
-        .get(`/home/favorites/${user.id}`)
+        .get(`${database_url}/home/favorites/${user.id}`)
         .then((res) =>
           dispatch(userActions.setUser({ ...user, favorites: res.data }))
         )

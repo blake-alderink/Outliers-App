@@ -8,6 +8,7 @@ import "../styles/Login.css";
 const LoginComponent = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const database_url = process.env.REACT_APP_API_URI;
 
   const user = useSelector((state) => state.user);
 
@@ -51,11 +52,11 @@ const LoginComponent = () => {
 
     try {
       await axios
-        .post(`/auth/loginUser`, Inputs)
+        .post(`${database_url}/auth/loginUser`, Inputs)
         .then(async function (res) {
           console.log(res.data);
           const favorites = await axios.get(
-            `/home/favorites/${res.data.rows[0].user_id}`
+            `${database_url}/home/favorites/${res.data.rows[0].user_id}`
           );
 
           console.log(res.data.rows[0].username, "res.data.rows.username");
@@ -82,7 +83,7 @@ const LoginComponent = () => {
   const createUserHandler = async () => {
     try {
       await axios
-        .post(`/auth/createUser`, Inputs)
+        .post(`${database_url}/auth/createUser`, Inputs)
         .then(async function (res) {
           console.log(res.status, "this is the res status?");
           if (res.status !== 200) {
@@ -90,7 +91,7 @@ const LoginComponent = () => {
             setErrorMessage("res.data");
           } else {
             const favorites = await axios.get(
-              `/home/favorites/${res.data.rows[0].user_id}`
+              `${database_url}/home/favorites/${res.data.rows[0].user_id}`
             );
             console.log(res.data.rows[0].username, "res.data.rows.username");
 
@@ -121,11 +122,11 @@ const LoginComponent = () => {
   useEffect(() => {
     if (user.isLoggedIn === false) {
       axios
-        .get("/users", { withCredentials: true })
+        .get(`${database_url}/users`, { withCredentials: true })
         .then(async function (res) {
           if (res.data !== false) {
             const favorites = await axios.get(
-              `/home/favorites/${res.data.user_id}`
+              `${database_url}/home/favorites/${res.data.user_id}`
             );
 
             dispatch(

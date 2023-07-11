@@ -106,7 +106,7 @@ export function FiltersComponent() {
       teamFilters.current = teamFilterValues;
       // setFilterOptions({ ...filterOptions, betTypes: values });
     };
-
+    console.log(outliers, betTypesFilters);
     getFilterValues();
     // dispatch(filtersActions.filterSports(sportsFilters));
     // dispatch(filtersActions.filterBetTypes(betTypesFilters));
