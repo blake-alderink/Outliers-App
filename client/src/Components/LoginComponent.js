@@ -124,6 +124,7 @@ const LoginComponent = () => {
       axios
         .get(`${database_url}/users`, { withCredentials: true })
         .then(async function (res) {
+          console.log(res.data, "this is the res data");
           if (res.data !== false) {
             const favorites = await axios.get(
               `${database_url}/home/favorites/${res.data.user_id}`
