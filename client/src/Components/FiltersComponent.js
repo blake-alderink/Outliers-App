@@ -101,7 +101,7 @@ export function FiltersComponent() {
       ];
       betTypesFilters.current = betTypeFilterValues;
       const teamFilterValues = [
-        ...new Set(outliers.map((outlier) => outlier.team)),
+        ...new Set(outliers.map((outlier) => outlier.sport)),
       ];
       teamFilters.current = teamFilterValues;
       // setFilterOptions({ ...filterOptions, betTypes: values });

@@ -9,7 +9,7 @@ const FavoriteList = () => {
   const filteredFavorites = favorites.filter(
     (fav) =>
       filters.betTypes.includes(fav.bet_type) &&
-      filters.teams.includes(fav.team)
+      filters.teams.includes(fav.sport)
   );
   const isFiltered = useSelector((state) => state.outliers.isFiltered);
 

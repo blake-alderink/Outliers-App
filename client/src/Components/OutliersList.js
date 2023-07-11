@@ -9,6 +9,7 @@ const OutliersList = () => {
   const outliers = useSelector((state) => state.outliers.outliersList);
   const filters = useSelector((state) => state.filters);
   const isFiltered = useSelector((state) => state.outliers.isFiltered);
+  const database_url = process.env.REACT_APP_DATABASE_URL;
 
   useEffect(() => {
     //on load of component, set state to the database. Then we can map the outliers down below in the jsx
@@ -27,7 +28,7 @@ const OutliersList = () => {
     return outliers.filter(
       (filter) =>
         filters.betTypes.includes(filter.bet_type) &&
-        filters.teams.includes(filter.team)
+        filters.teams.includes(filter.sport)
     );
   };
 
