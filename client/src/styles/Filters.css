@@ -7,6 +7,10 @@
   margin-top: 3rem;
   max-width: 540px;
   font-family: monospace;
+  @media (max-width: 540px) {
+    max-width: 500px;
+    /* background-color: red; */
+  }
 }
 
 .middle-filters-container {
@@ -31,6 +35,10 @@
   gap: 1.2rem;
   justify-content: right;
   align-content: center;
+  @media (max-width: 540px) {
+    max-width: 90%;
+    /* background-color: red; */
+  }
 }
 
 .filter-label {
