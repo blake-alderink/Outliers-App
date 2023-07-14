@@ -190,7 +190,9 @@ const LoginComponent = () => {
               </button>
             </div>
             <div className="login-buttons-container">
-              <button className="login-button">Continue As Guest</button>
+              <button className="login-button guest-login-button">
+                Continue As Guest
+              </button>
             </div>
           </div>
           <h3 style={{ color: "white" }}>{errorMessage}</h3>
@@ -213,6 +215,7 @@ const LoginComponent = () => {
             textAlign: "center",
             fontSize: ".8rem",
           }}
+          className="guest-note"
         >
           Please note: guest users are unable to select favorites. Please create
           an account in order to save favorites. Thanks!

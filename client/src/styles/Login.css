@@ -72,3 +72,11 @@
   background-color: white;
   color: rgba(53, 26, 110, 0.516);
 }
+
+.guest-login-button {
+  display: none;
+}
+
+.guest-note {
+  display: none;
+}
