@@ -16,7 +16,7 @@
   position: relative;
   padding: 3rem 3rem 1rem 3rem;
   transition: 750ms;
-  @media (max-width: 540px) and (-webkit-device-pixel-ratio: 3) {
+  @media (max-width: 540px) and (-webkit-device-pixel-ratio: 3) and (max-device-width: 540px) {
     max-width: 80%;
     background-color: white;
   }
