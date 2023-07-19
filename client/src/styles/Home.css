@@ -16,10 +16,6 @@
   position: relative;
   padding: 3rem 3rem 1rem 3rem;
   transition: 750ms;
-  /* @media screen and (max-device-width: 1600px) {
-    max-width: 80%;
-    background-color: white;
-  } */
 }
 
 .card-container:hover {
@@ -36,11 +32,6 @@
   flex-direction: column;
   align-items: center;
   gap: 4rem;
-  @media (max-width: 540px) {
-    max-width: 100%;
-    background-color: red;
-    /* background-color: red; */
-  }
 }
 
 .card-title {
@@ -52,10 +43,10 @@
   z-index: 5;
   max-width: 80%;
   margin-right: auto;
-  @media (max-width: 540px) {
+  /* @media (max-width: 540px) {
     font-size: 1rem;
     max-width: 75%;
-  }
+  } */
 }
 
 .gradient-background-container {
@@ -158,10 +149,6 @@
   margin-bottom: -1rem;
   cursor: pointer;
   transition-duration: 300ms;
-  @media (max-width: 540px) {
-    font-size: 1rem;
-    /* background-color: red; */
-  }
 }
 
 .outlier-container:hover {
@@ -175,4 +162,21 @@ h1 {
   line-height: 1;
   margin: 0;
   padding: 0;
+}
+
+@media screen and (max-width: 540px) {
+  .card-container {
+    max-width: 80%;
+    /* background-color: white;
+    color: blue; */
+  }
+
+  .outlier-container {
+    font-size: 1rem;
+  }
+
+  .cards-list-container {
+    background-color: red;
+    max-width: 100%;
+  }
 }

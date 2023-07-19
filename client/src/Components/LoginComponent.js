@@ -4,6 +4,7 @@ import { userActions } from "../store/userSlice";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import "../styles/Login.css";
+import "../styles/Home.css";
 
 const LoginComponent = () => {
   const navigate = useNavigate();
@@ -152,75 +153,105 @@ const LoginComponent = () => {
   if (isLoading) return null;
   else
     return (
-      <div className="login-outer-container">
-        <div className="login-inner-container">
-          <h1
-            style={{ margin: "auto", fontSize: "3rem", marginBottom: "1rem" }}
+      <>
+        {/* <div className="card-lists-section">
+          <div className="cards-list-container">
+            <div className="card-container">
+              <div className="card-title">
+                hello <span className="card-info-text-small">vs</span> hello
+              </div>
+              <div className="gradient-background-container">
+                <div className="gradient-background">
+                  {" "}
+                  <span className="bet-type-text">hello</span>
+                </div>
+              </div>
+              <div className="card-info-text">Average Line: hello</div>
+              <div className="card-info-text"> Sport: hello</div>
+              <div className="outlier-container">
+                <div className="outlier-inner-container">Outlier: yello</div>
+                <div className="outlier-inner-container">
+                  <div>
+                    <span>hi ths is it</span>
+                  </div>
+                </div>
+              </div>
+
+            
+            </div>
+          </div>
+        </div> */}
+
+        <div className="login-outer-container">
+          <div className="login-inner-container">
+            <h1
+              style={{ margin: "auto", fontSize: "3rem", marginBottom: "1rem" }}
+            >
+              Outliers
+            </h1>
+            <div className="inputs-outer-container">
+              <div className="input-container">
+                <label>Username</label>
+                <input
+                  name="username"
+                  value={Inputs.username}
+                  onChange={changeHandler}
+                ></input>
+              </div>
+              <div className="input-container">
+                <label>Password</label>
+                <input
+                  name="password"
+                  value={Inputs.password}
+                  onChange={changeHandler}
+                ></input>
+              </div>
+            </div>
+            <div className="login-buttons-outer-container">
+              <div className="login-buttons-container">
+                <button className="login-button" onClick={() => loginHandler()}>
+                  Login
+                </button>
+                <button
+                  className="login-button"
+                  onClick={() => createUserHandler()}
+                >
+                  Create Account
+                </button>
+              </div>
+              <div className="login-buttons-container">
+                <button className="login-button guest-login-button">
+                  Continue As Guest
+                </button>
+              </div>
+            </div>
+            <h3 style={{ color: "white" }}>{errorMessage}</h3>
+          </div>
+          <div
+            style={{
+              marginLeft: "20vw",
+              marginRight: "20vw",
+              textAlign: "center",
+              fontSize: "1.2rem",
+            }}
           >
-            Outliers
-          </h1>
-          <div className="inputs-outer-container">
-            <div className="input-container">
-              <label>Username</label>
-              <input
-                name="username"
-                value={Inputs.username}
-                onChange={changeHandler}
-              ></input>
-            </div>
-            <div className="input-container">
-              <label>Password</label>
-              <input
-                name="password"
-                value={Inputs.password}
-                onChange={changeHandler}
-              ></input>
-            </div>
+            Find the outlier bet opportunities so you can get the best odds.
           </div>
-          <div className="login-buttons-outer-container">
-            <div className="login-buttons-container">
-              <button className="login-button" onClick={() => loginHandler()}>
-                Login
-              </button>
-              <button
-                className="login-button"
-                onClick={() => createUserHandler()}
-              >
-                Create Account
-              </button>
-            </div>
-            <div className="login-buttons-container">
-              <button className="login-button guest-login-button">
-                Continue As Guest
-              </button>
-            </div>
+          <div
+            style={{
+              marginTop: "1rem",
+              marginLeft: "10vw",
+              marginRight: "10vw",
+              textAlign: "center",
+              fontSize: ".8rem",
+            }}
+            className="guest-note"
+          >
+            Please note: guest users are unable to select favorites. Please
+            create an account in order to save favorites. Thanks!
           </div>
-          <h3 style={{ color: "white" }}>{errorMessage}</h3>
         </div>
-        <div
-          style={{
-            marginLeft: "20vw",
-            marginRight: "20vw",
-            textAlign: "center",
-            fontSize: "1.2rem",
-          }}
-        >
-          Find the outlier bet opportunities so you can get the best odds.
-        </div>
-        <div
-          style={{
-            marginTop: "1rem",
-            marginLeft: "10vw",
-            marginRight: "10vw",
-            textAlign: "center",
-            fontSize: ".8rem",
-          }}
-          className="guest-note"
-        >
-          Please note: guest users are unable to select favorites. Please create
-          an account in order to save favorites. Thanks!
-        </div>
-      </div>
+      </>
     );
 };
 
